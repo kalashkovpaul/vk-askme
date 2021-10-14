@@ -3,11 +3,32 @@ main > .container {
     padding: 60px 15px 0;
 }
 
+.main-page {
+    margin-top: 20px;
+}
+
+.ask-page {
+    margin-top: 70px;
+}
+
 .question {
     margin: 20px;
     padding: 10px;
     border: 2px solid gray;
     border-radius: 5px;
+}
+
+.new-question {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+.send-question-button {
+    color:black;
+    background-color:beige;
+    border-color:beige;
 }
 
 .question-avatar {
