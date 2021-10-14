@@ -1,2 +1,3 @@
-# web-tech-park
-For web-learning in tech-park I semester
+# Web-разработка
+## Здесь будут располагаться домашние задания по Web-разработке, Технопарк, 1 семестр.
+
