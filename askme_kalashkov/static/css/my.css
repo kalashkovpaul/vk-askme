@@ -18,6 +18,11 @@ main > .container {
     border-radius: 5px;
 }
 
+.question-answer {
+    margin: 20px;
+    padding: 10px;
+}
+
 .new-question {
     margin: 20px;
     padding: 10px;
@@ -29,12 +34,24 @@ main > .container {
     color:black;
     background-color:beige;
     border-color:beige;
+    margin: 10px;
+}
+
+.question-big-avatar {
+    width: 200px;
+    heigth: 200px;
+    maring: 10px;
 }
 
 .question-avatar {
     width: 100px;
     height: 100px;
     margin: 10px;
+    padding: 0px;
+}
+
+.input-area {
+    width: 350px;
 }
 
 .question-button {
@@ -59,11 +76,23 @@ main > .container {
 
 .navbar-user-text {
     color: white;
+    width: 90px;
     padding-top: 13px;
+}
+
+.navbar-login-text {
+    color: white;
+    width: 70px;
+    padding-top: 13px;
+    padding-left: 16px;
 }
 
 .user-avatar {
     margin: 5px;
     width: 40px;
     height: 40px;
+}
+
+.little-label {
+    margin: 10px;
 }
