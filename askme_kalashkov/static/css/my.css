@@ -18,8 +18,12 @@ main > .container {
     border-radius: 5px;
 }
 
+.total {
+    padding-left: 7px;
+}
+
 .question-answer {
-    margin: 20px;
+    margin-bottom: 50px;
     padding: 10px;
 }
 
@@ -39,8 +43,8 @@ main > .container {
 
 .question-big-avatar {
     width: 200px;
-    heigth: 200px;
-    maring: 10px;
+    height: 200px;
+    margin: 10px;
 }
 
 .question-avatar {

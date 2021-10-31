@@ -1,0 +1,43 @@
+{% extends "incl/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Settings</title>
+{% endblock title %}
+
+{% block content %}
+        <div class="col-9">
+            <div class="row">
+                <div class="col">
+                    <h2>Settings: Perfect User</h2>
+                </div>
+            </div>
+            <form>
+                <div class="mb-3">
+                    <label for="loginForm" class="form-label">Login</label>
+                    <input type="text" class="form-control input-area" value="YourBrilliantLogin" id="loginForm">
+                  </div>
+                <div class="mb-3">
+                  <label for="emailForm" class="form-label">Email address</label>
+                  <input type="email" class="form-control input-area" value="your_awesome_email@life_is_good.com" id="emailForm">
+                </div>
+                <div class="mb-3">
+                    <label for="nicknameForm" class="form-label">Nickname</label>
+                    <input type="text" class="form-control input-area" value="yourWonderfulNickname" id="nicknameForm">
+                  </div>
+                  <div class="mb-3">
+                    <div class="row">
+                        <label for="avatarForm" class="form-label">Avatar</label>
+                        <image src="{% static "img/empty-img.png" %}" class="question-avatar" id="avatarForm">
+                    </div>
+                    <div class="row-1">
+                      <div class="mb-3">
+                        <input class="form-control input-area" type="file" id="formFile">
+                      </div>
+                    </div>
+                    
+                  </div>
+                <button type="submit" class="btn btn-primary send-question-button">Save</button>
+              </form>   
+        </div>
+{% endblock content %}

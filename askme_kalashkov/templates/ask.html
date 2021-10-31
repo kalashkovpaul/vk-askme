@@ -1,0 +1,27 @@
+{% extends "incl/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Ask</title>
+{% endblock title %}
+
+{% block content %}
+          <div class="col-9">
+            <h2>New Question</h2>
+            <div class="row new-question">
+                <div class="mb-3">
+                    <label for="newQuestionTitle" class="form-label">Title</label>
+                    <input type="email" class="form-control" id="newQuestionTitle" placeholder="How can I made a new quesion on AskMe?">
+                  </div>
+                  <div class="mb-3">
+                    <label for="newQuestionText" class="form-label">Text</label>
+                    <textarea class="form-control" id="newQuestionText" rows="12"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="newQuestionTags" class="form-label">Tags</label>
+                    <input type="email" class="form-control" id="newQuestionTags" placeholder="tag_1, tag_2, tag_3">
+                  </div>
+                  <button type="button" class="btn btn-primary btn-lg send-question-button">ASK!</button>
+            </div>
+          </div>
+{% endblock content %}
