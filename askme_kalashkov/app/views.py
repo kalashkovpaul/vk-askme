@@ -16,17 +16,20 @@ answers = [
     } for i in range (50)
 ]
 
+def paginate(objects_list, request, per_page=10):
+    paginator = Paginator(objects_list, per_page)
+    page_number=request.GET.get('page')
+    content=paginator.get_page(page_number)
+    page = {'contents': content}
+    return page
+
 def index(request):
-    paginator = Paginator(questions, 5)
-    page = request.GET.get('page')
-    content = paginator.get_page(page) 
-    return render(request, "index.html", {'questions': content})
+    page = paginate(questions, request, 5)
+    return render(request, "index.html", page)
 
 def question(request):
-    paginator = Paginator(answers, 5)
-    page = request.GET.get('page')
-    content = paginator.get_page(page)
-    return render(request, "question.html", {'answers': content})
+    page = paginate(answers, request,5)
+    return render(request, "question.html", page)
 
 def ask(request):
     return render(request, "ask.html", {})
@@ -41,13 +44,12 @@ def settings(request):
     return render(request, "settings.html", {})
 
 def tagged(request):
-    paginator = Paginator(questions, 5)
-    page = request.GET.get('page')
-    content = paginator.get_page(page)
-    return render(request, "tagged_questions.html", {'questions': content})
+    page = paginate(questions, request, 5)
+    return render(request, "tagged_questions.html", page)
 
 def hot(request):
-    paginator = Paginator(questions, 5)
-    page = request.GET.get('page')
-    content = paginator.get_page(page) 
-    return render(request, "hot.html", {'questions': content})
+    page = paginate(questions, request, 5) 
+    return render(request, "hot.html", page)
+
+def profile(request):
+    return render(request, "profile.html", {})

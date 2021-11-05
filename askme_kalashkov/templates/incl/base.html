@@ -42,7 +42,7 @@
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">AskMe</a>
+      <a class="navbar-brand" href="{% url "index" %}">AskMe</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -56,12 +56,12 @@
       <div class="user-info">
           <img class="user-avatar" src="{% static "img/watergirl.png" %}" alt="">
       </div>
-      <div class="user-info navbar-user-text">
-          User
-      </div>
-      <div class="user-info navbar-user-text">
+      <a href="{% url "profile" %}" class="user-info navbar-user-text">
+          User_666
+      </a>
+      <a href="{% url "settings" %}" class="user-info navbar-user-text">
           Settings
-      </div>
+      </a>
     </div>
   </nav>
 </header>
@@ -76,73 +76,73 @@
             <h2>Popular Tags</h2>
             <div class="row">
                 <h5>
-                  <a class="link-primary">
+                  <a href="{% url "tag" %}" class="link-primary">
                     Tag_1
                   </a>
                  &nbsp;
-                  <a class="link-success">
+                  <a href="{% url "tag" %}" class="link-success">
                     Tag_2
                   </a>
                   &nbsp;
-                  <a class="link-danger">
+                  <a href="{% url "tag" %}" class="link-danger">
                     Tag_3
                   </a>
                   &nbsp;
                 </h5>
                 <h5>
                   &nbsp;&nbsp;
-                  <a class="link-dark">
+                  <a href="{% url "tag" %}" class="link-dark">
                     Tag_X
                   </a>
                   &nbsp;
-                  <a class="link-info">
+                  <a href="{% url "tag" %}" class="link-info">
                     Tag_X+1
                   </a>
                 </h5>
                 <h5>
-                  <a class="link-warning">
+                  <a href="{% url "tag" %}" class="link-warning">
                     Tag_4
                   </a>
                   &nbsp;
-                  <a class="link-primary">
+                  <a href="{% url "tag" %}" class="link-primary">
                     Tag_5
                   </a>
                   &nbsp;&nbsp;
-                  <a class="link-danger">
+                  <a href="{% url "tag" %}" class="link-danger">
                     Tag_6
                   </a>
                 </h5>
                 <h5>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <a class="link-success">
+                  <a href="{% url "tag" %}" class="link-success">
                     Tag_Y
                   </a>
                   &nbsp;
-                  <a class="link-dark">
+                  <a href="{% url "tag" %}" class="link-dark">
                     Tag_Y+1
                   </a>
                 </h5>
                 <h5>
                   &nbsp;&nbsp;&nbsp;
-                  <a class="link-primary">
+                  <a href="{% url "tag" %}" class="link-primary">
                     Tag_7
                   </a>
                  &nbsp;
-                  <a class="link-success">
+                  <a href="{% url "tag" %}" class="link-success">
                     Tag_8
                   </a>
                   &nbsp;
-                  <a class="link-danger">
+                  <a href="{% url "tag" %}" class="link-danger">
                     Tag_9
                   </a>
                   &nbsp;
                 </h5>
                 <h5>
-                  <a class="link-info">
+                  <a href="{% url "tag" %}" class="link-info">
                     Tag_Z
                   </a>
                   &nbsp;
-                  <a class="link-warning">
+                  <a href="{% url "tag" %}" class="link-warning">
                     Tag_Z+1
                   </a>
                 </h5>
@@ -151,52 +151,52 @@
             <div class="row">
                 <h5>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <a class="link-danger>
+                  <a href="{% url "profile" %}" class="link-danger">
                     User_1
                   </a>
                  &nbsp;
-                  <a class="link-primary">
+                  <a href="{% url "profile" %}" class="link-primary">
                     User_2
                   </a>
                   &nbsp;
-                  <a class="link-success">
+                  <a href="{% url "profile" %}" class="link-success">
                     User_3
                   </a>
                   &nbsp;
                 </h5>
                 <h5>
-                  <a class="link-dark">
+                  <a href="{% url "profile" %}" class="link-dark">
                     You
                   </a>
                  &nbsp;
-                  <a class="link-info">
+                  <a href="{% url "profile" %}" class="link-info">
                     Me
                   </a>
                   &nbsp;
-                  <a class="link-warning">
-                    Our friends
+                  <a href="{% url "profile" %}" class="link-warning">
+                    Our_friends
                   </a>
                 </h5>
                 <h5>
                   &nbsp;
-                  <a class="link-success">
+                  <a href="{% url "profile" %}" class="link-success">
                     User_4
                   </a>
                  &nbsp;
-                  <a class="link-primary">
+                  <a href="{% url "profile" %}" class="link-primary">
                     User_5
                   </a>
                   &nbsp;
-                  <a class="link-danger">
+                  <a href="{% url "profile" %}" class="link-danger">
                     User_6
                   </a>
                 </h5>
                 <h5>
-                  <a class="link-warning">
+                  <a href="{% url "profile" %}" class="link-warning">
                     Your friend
                   </a>
                   &nbsp;
-                  <a class="link-dark">
+                  <a href="{% url "profile" %}" class="link-dark">
                     My friend
                   </a>
                 </h5>

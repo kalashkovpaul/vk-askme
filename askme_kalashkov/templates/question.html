@@ -50,7 +50,7 @@
               </div>
             </div>
             <hr/>
-            {% for answer in answers %}
+            {% for answer in contents %}
                 {% include "incl/single_answer.html" %}
             {% endfor %}
         <hr/>
@@ -58,6 +58,6 @@
           <textarea class="form-control" id="newQuestionText" rows="8" placeholder="Enter your answer here..."></textarea>
         </div>
         <button type="button" class="btn btn-primary btn-lg send-question-button">Answer!</button>
-            {% include "incl/answers_pagination.html" %}
+            {% include "incl/pagination.html" %}
         </div>
 {% endblock content %}

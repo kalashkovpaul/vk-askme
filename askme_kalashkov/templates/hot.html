@@ -12,7 +12,7 @@
                     <h2>Popular questions</h2>
                 </div>
             </div>
-            {% for question in questions %}
+            {% for question in contents %}
                 {% include "incl/single_question.html" %}
             {% endfor %}
             {% include "incl/pagination.html" %}
