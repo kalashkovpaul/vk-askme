@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-# Create your views here.
+from django.utils import timezone
+from .models import Question, Answer, Tag, Like
 
 questions = [
     {
@@ -20,12 +21,17 @@ def paginate(objects_list, request, per_page=10):
     paginator = Paginator(objects_list, per_page)
     page_number=request.GET.get('page')
     content=paginator.get_page(page_number)
-    page = {'contents': content}
-    return page
+    return content
 
 def index(request):
-    page = paginate(questions, request, 5)
-    return render(request, "index.html", page)
+    # num_questions = Question.objects.all().count()
+    new_questions = Question.objects.filter(date__lt=timezone.now()).order_by("-date")
+    content = paginate(new_questions, request, 5)
+    context = {
+        'contents': content,
+        'questions': new_questions
+    }
+    return render(request, "index.html", context=context)
 
 def question(request):
     page = paginate(answers, request,5)
