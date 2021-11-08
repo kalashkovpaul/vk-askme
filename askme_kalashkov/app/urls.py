@@ -20,7 +20,6 @@ from app import views
 
 app_urlpatterns = [
     path('question/', views.question, name="question"),
-    path('question/2/', views.question),
     path('ask/', views.ask, name="ask"),
     path('login/', views.login, name="login"),
     path('register/', views.register, name="register"),

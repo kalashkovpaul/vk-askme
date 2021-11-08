@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import date
+from datetime import datetime
 
 from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import User
@@ -7,6 +7,7 @@ from django.utils import timezone
 
 class QuestionManager(models.Manager):
     def new_questions(self):
+        # return self.all()
         return self.filter(date__lt=timezone.now()).order_by("-date")
 
     def popular_questions(self):
@@ -22,7 +23,7 @@ class Question(models.Model):
     title = models.CharField(max_length=100)
     text = models.CharField(max_length=500)
     author = models.ForeignKey(Profile, on_delete=CASCADE, related_name="questions")
-    date = models.DateField(blank=True, null=True)
+    date = models.DateTimeField(default=datetime.now, blank=True, null=True)
     carma = models.IntegerField(default=0)
     is_closed = models.IntegerField(default=0)
     answers_number = models.IntegerField(default=0)
@@ -31,7 +32,7 @@ class Question(models.Model):
 class Answer(models.Model):
     title = models.CharField(max_length=100)
     text = models.CharField(max_length=600)
-    author = models.ForeignKey(Profile, on_delete=CASCADE, related_name="answers")
+    author = models.ForeignKey(Profile, on_delete=CASCADE, related_name="created_answers")
     related_question = models.ForeignKey(
         Question, on_delete=CASCADE, related_name="answers"
     )
@@ -42,7 +43,7 @@ class Answer(models.Model):
 class Tag(models.Model):
     name = models.CharField(max_length=20)
     carma = models.IntegerField(default=0)
-    questions = models.ManyToManyField(Question, related_name="questions")
+    questions = models.ManyToManyField(Question, related_name="tags")
 
 
 class Like(models.Model):

@@ -11,7 +11,7 @@
             <div class="row question-answer">
               <div class="col-2">
                 <div class="row">
-                  <img class="question-big-avatar" src="{% static "img/watergirl.png" %}" alt="">
+                  <img class="question-big-avatar" src="{% static "img/fireboy.png" %}" alt="">
                 </div>
                 <div class="row">
                   <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -24,33 +24,41 @@
                 </div>
                 <div class="row" style="padding-left: 60px;">
                   <h7>
-                      Total: 12
+                      Total: {{ question.carma}}
                   </h7>
               </div>
               </div>
               <div class="col-8">
                 <div class="row">
-                        <h5>Question 2</h5>
+                        <h5>{{ question.title }}</h5>
                     </div>
                     <div class="row">
                         <h7>
-                            Description: It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                          {{ question.text }}
                         </h7>
                     </div>
                     <div class="row">
                         <h5> </h5>
                     </div>
                     <div class="row">
+                          <div class="col-2">
+                            <h8>
+                                Answers({{ question.answers_number }})
+                            </h8>
+                        </div>  
                         <div class="col-10">
                             <h8>
-                                Tags: tag_1, tag_2...
+                                Tags:
+                                {% for tag in question.tags.all %}
+                                    {{ tag.name }}
+                                {% endfor %}
                             </h8>
                         </div>
                     </div>
               </div>
             </div>
             <hr/>
-            {% for answer in contents %}
+            {% for answer in answers %}
                 {% include "incl/single_answer.html" %}
             {% endfor %}
         <hr/>

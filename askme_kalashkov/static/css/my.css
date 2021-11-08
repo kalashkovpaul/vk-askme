@@ -54,6 +54,10 @@ main > .container {
     padding: 0px;
 }
 
+.question-text {
+    height: 100px;
+}
+
 .input-area {
     width: 350px;
 }
