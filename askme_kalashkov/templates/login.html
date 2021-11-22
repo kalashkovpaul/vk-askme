@@ -1,5 +1,6 @@
 {% extends "incl/base.html" %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block title %}
 <title>Sign in</title>
@@ -12,20 +13,21 @@
                     <h2>Log In</h2>
                 </div>
             </div>
-            <form>
-                <div class="mb-3">
+            <form validate action='/login/' methog='post'>
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% buttons %}
+                <!-- <div class="mb-3">
                   <label for="loginInput" class="form-label">Login</label>
                   <input type="text" class="form-control input-area" value="your_awesome_login" id="loginInput">
                 </div>
                 <div class="mb-3">
                   <label for="inputPassword" class="form-label">Password</label>
-                  <input type="password" class="form-control is-invalid input-area" id="inputPassword" value="IncorrectPassword" aria-describedby="passwordValidation" required>
-                  <div id="passwordValidation" class="invalid-feedback">
-                    This password will not work!
-                  </div>
-                </div>
+                  <input type="password" class="form-control is-valid input-area" id="inputPassword" value="IncorrectPassword" aria-describedby="passwordValidation" required>
+                </div> -->
                 <button type="submit" class="btn btn-success">Log In!</button>
                 <a type="button" href="{% url "register" %}" class="btn btn-link">Create new account</a>
+                {% endbuttons %}
               </form>
         </div>
 {% endblock content %}

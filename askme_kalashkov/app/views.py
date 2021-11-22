@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
 from django.utils import timezone
+from django.contrib import auth
 from .models import Question, Answer, Tag, Like
+from .forms import LoginForm
 
 # questions = [
 #     {
@@ -44,11 +46,31 @@ def question(request):
     }
     return render(request, "question.html", context=context)
 
+# @login_requred()
 def ask(request):
+    # if request.method == 'POST':
+    #     q_form = QuestionForm(data=request.POST)
+    #     if q_form.is_valid():
+    #         q = Question(**q_form.cleaned_data)
+    #         q = Question.save()
     return render(request, "ask.html", {})
 
 def login(request):
-    return render(request, "login.html", {})
+    print(request.POST)
+    if request.method == 'GET':
+        form = LoginForm()
+    elif request.method == 'POST':
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            user = auth.authenticate(**form.cleaned_data)
+            # print(user)
+            if not user:
+                form.add_error(None, "User not found!")
+            else:
+                auth.login(request, user)
+                return redirect(reverse('new'))
+
+    return render(request, "login.html", {'form': form})
 
 def register(request):
     return render(request, "register.html", {})
