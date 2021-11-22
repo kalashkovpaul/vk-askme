@@ -1,0 +1,47 @@
+<nav aria-label="...">
+    <ul class="pagination my_pagination">
+        {% if contents.has_previous %}
+        <li class="page-item enabled my_pagination">
+            <a class="page-link my_pagination" href="?page={{ contents.previous_page_number }}">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled my_pagination">
+            <a class="page-link my_pagination">Previous</a>
+        </li>
+        {% endif %}
+    {% if contents.has_next == False or contents.has_next and contents.next_page_number == contents.paginator.num_pages%}
+        <li class="page-item my_pagination"><a class="page-link my_pagination" href="?page=1">
+            1
+        </a></li>
+        <li class="page-item my_pagination"><a class="page-link my_pagination" href="#">...</a></li>
+    {% endif %}
+    {% if contents.has_previous %}
+        <li class="page-item my_pagination"><a class="page-link my_pagination" href="?page={{ contents.previous_page_number }}">
+            {{ contents.previous_page_number }}
+        </a></li>
+    {% endif %}
+    <li class="page-item active my_pagination" aria-current="page">
+        <a class="page-link my_pagination" href="#">
+            {{ contents.number }}
+        </a>
+    </li>
+    {% if contents.has_next %}
+        <li class="page-item my_pagination"><a class="page-link my_pagination" href="?page={{ contents.next_page_number }}">
+            {{ contents.next_page_number }}
+        </a></li>
+        {% if contents.next_page_number != contents.paginator.num_pages %}
+            <li class="page-item my_pagination"><a class="page-link my_pagination" href="#">...</a></li>
+            <li class="page-item my_pagination"><a class="page-link my_pagination" href="?page={{ contents.paginator.num_pages }}">
+                {{ contents.paginator.num_pages }}
+            </a></li>
+        {% endif %}
+        <li class="page-item my_pagination">
+            <a class="page-link my_pagination" href="?page={{ contents.next_page_number }}">Next</a>
+        </li>
+    {% else %}
+        <li class="page-item disabled my_pagination">
+            <a class="page-link my_pagination" href="#">Next</a>
+        </li>
+    {% endif %}
+    </ul>
+</nav>

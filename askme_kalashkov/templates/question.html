@@ -1,0 +1,63 @@
+{% extends "incl/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Question 2</title>
+{% endblock title %}
+
+{% block content %}
+      <div class="col-9">
+            <!-- <h2>This Question</h2> -->
+            <div class="row question-answer">
+              <div class="col-2">
+                <div class="row">
+                  <img class="question-big-avatar" src="{% static "img/watergirl.png" %}" alt="">
+                </div>
+                <div class="row">
+                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <label class="btn btn-outline-primary question-button" for="btnradio3">Like</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                    <label class="btn btn-outline-primary question-button" for="btnradio4">Dislike</label>
+                  </div>
+                </div>
+                <div class="row" style="padding-left: 60px;">
+                  <h7>
+                      Total: 12
+                  </h7>
+              </div>
+              </div>
+              <div class="col-8">
+                <div class="row">
+                        <h5>Question 2</h5>
+                    </div>
+                    <div class="row">
+                        <h7>
+                            Description: It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                        </h7>
+                    </div>
+                    <div class="row">
+                        <h5> </h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-10">
+                            <h8>
+                                Tags: tag_1, tag_2...
+                            </h8>
+                        </div>
+                    </div>
+              </div>
+            </div>
+            <hr/>
+            {% for answer in contents %}
+                {% include "incl/single_answer.html" %}
+            {% endfor %}
+        <hr/>
+        <div>
+          <textarea class="form-control" id="newQuestionText" rows="8" placeholder="Enter your answer here..."></textarea>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg send-question-button">Answer!</button>
+            {% include "incl/pagination.html" %}
+        </div>
+{% endblock content %}

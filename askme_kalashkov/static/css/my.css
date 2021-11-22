@@ -1,0 +1,102 @@
+main > .container {
+    max-width: 1831px;
+    padding: 60px 15px 0;
+}
+
+.main-page {
+    margin-top: 20px;
+}
+
+.ask-page {
+    margin-top: 70px;
+}
+
+.question {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+.total {
+    padding-left: 7px;
+}
+
+.question-answer {
+    margin-bottom: 50px;
+    padding: 10px;
+}
+
+.new-question {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+.send-question-button {
+    color:black;
+    background-color:beige;
+    border-color:beige;
+    margin: 10px;
+}
+
+.question-big-avatar {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+
+.question-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    padding: 0px;
+}
+
+.input-area {
+    width: 350px;
+}
+
+.question-button {
+    width: 50px;
+    font-size: 0.8rem;
+    padding: .375rem 0.375rem;
+    color: black;
+    background-color: 0dfded;
+    border-color: gray;
+}
+
+.my_pagination {
+    color: black;
+    border-color: gray;
+}
+
+.user-info {
+    width: 50px;
+    height: 50px;
+    color: white;
+}
+
+.navbar-user-text {
+    color: white;
+    width: 90px;
+    padding-top: 13px;
+}
+
+.navbar-login-text {
+    color: white;
+    width: 70px;
+    padding-top: 13px;
+    padding-left: 16px;
+}
+
+.user-avatar {
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+}
+
+.little-label {
+    margin: 10px;
+}

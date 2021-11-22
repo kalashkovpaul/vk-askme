@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="row question">
+    <div class="col-1">
+        <div class="row">
+            <img class="question-avatar" src="{% static "img/fireboy.png" %}" alt="">
+        </div>
+        <div class="row">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                <label class="btn btn-outline-primary question-button" for="btnradio1">Like</label>
+              
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-primary question-button" for="btnradio2">Dislike</label>
+              </div>
+        </div>
+        <div class="row" style="padding-left: 7px;">
+          <h7>
+              Total: 21
+          </h7>
+        </div>
+        <div class="row" style="padding-left: 15px;">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="checkAnswer">
+            <label class="form-check-label" for="checkAnswer">
+              Correct!
+            </label>
+          </div>
+        </div>
+    </div>
+    <div class="col-10">
+        <div class="row">
+            <h7>
+                {{ answer.text }}
+            </h7>
+        </div>
+        <div class="row">
+            <h5> </h5>
+        </div>
+    </div>
+</div>

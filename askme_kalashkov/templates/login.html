@@ -1,0 +1,31 @@
+{% extends "incl/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Sign in</title>
+{% endblock title %}
+
+{% block content %}
+        <div class="col-9">
+            <div class="row">
+                <div class="col">
+                    <h2>Log In</h2>
+                </div>
+            </div>
+            <form>
+                <div class="mb-3">
+                  <label for="loginInput" class="form-label">Login</label>
+                  <input type="text" class="form-control input-area" value="your_awesome_login" id="loginInput">
+                </div>
+                <div class="mb-3">
+                  <label for="inputPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control is-invalid input-area" id="inputPassword" value="IncorrectPassword" aria-describedby="passwordValidation" required>
+                  <div id="passwordValidation" class="invalid-feedback">
+                    This password will not work!
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-success">Log In!</button>
+                <a type="button" href="{% url "register" %}" class="btn btn-link">Create new account</a>
+              </form>
+        </div>
+{% endblock content %}

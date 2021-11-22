@@ -1,0 +1,20 @@
+{% extends "incl/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Tag: hoho</title>
+{% endblock title %}
+
+{% block content %}
+        <div class="col-9">
+            <div class="row">
+                <div class="col-3">
+                    <h2>Tag: hoho</h2>
+                </div>
+            </div>
+            {% for question in contents %}
+                {% include "incl/single_question.html" %}
+            {% endfor %}
+            {% include "incl/pagination.html" %}
+        </div>
+{% endblock content %}
