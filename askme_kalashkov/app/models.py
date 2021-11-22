@@ -7,7 +7,6 @@ from django.utils import timezone
 
 class QuestionManager(models.Manager):
     def new_questions(self):
-        # return self.all()
         return self.filter(date__lt=timezone.now()).order_by("-date")
 
     def popular_questions(self):
@@ -46,12 +45,14 @@ class Tag(models.Model):
     questions = models.ManyToManyField(Question, related_name="tags")
 
 
-class Like(models.Model):
-    user = models.ForeignKey(Profile, on_delete=CASCADE, related_name="likes")
+class LikeAnswer(models.Model):
+    user = models.ForeignKey(Profile, on_delete=CASCADE, related_name="likes_answer")
     valude = models.IntegerField(default=0)
-    related_question = models.ForeignKey(
-        Question, on_delete=CASCADE, related_name="likes"
-    )
     related_answer = models.ForeignKey(Answer, on_delete=CASCADE, related_name="likes")
+    unique_together = models.BooleanField(default=0)
 
-
+class LikeQuestion(models.Model):
+    user = models.ForeignKey(Profile, on_delete=CASCADE, related_name="likes_question")
+    valude = models.IntegerField(default=0)
+    related_question = models.ForeignKey(Question, on_delete=CASCADE, related_name="likes")
+    unique_together = models.BooleanField(default=0)
