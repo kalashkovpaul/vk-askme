@@ -47,12 +47,17 @@ class Tag(models.Model):
 
 class LikeAnswer(models.Model):
     user = models.ForeignKey(Profile, on_delete=CASCADE, related_name="likes_answer")
-    valude = models.IntegerField(default=0)
+    value = models.IntegerField(default=0)
     related_answer = models.ForeignKey(Answer, on_delete=CASCADE, related_name="likes")
-    unique_together = models.BooleanField(default=0)
+
+    class Meta:
+        unique_together = ['user', 'related_answer']
 
 class LikeQuestion(models.Model):
     user = models.ForeignKey(Profile, on_delete=CASCADE, related_name="likes_question")
-    valude = models.IntegerField(default=0)
+    value = models.IntegerField(default=0)
     related_question = models.ForeignKey(Question, on_delete=CASCADE, related_name="likes")
     unique_together = models.BooleanField(default=0)
+
+    class Meta:
+        unique_together = ['user', 'related_question']
