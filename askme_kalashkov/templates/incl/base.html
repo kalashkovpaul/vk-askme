@@ -55,16 +55,27 @@
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
-        <button class="btn btn-outline-success" type="submit">ASK!</button>
+        <form action="{% url "ask" %}">
+          <button class="btn btn-outline-success" type="submit">ASK!</button>
+        </form>
         <div class="user-info">
           <img class="user-avatar" src="{% static "img/watergirl.png" %}" alt="">
         </div>
-        <a href="{% url "profile" %}" class="user-info navbar-user-text">
-          User_666
+        {% if request.user.is_authenticated %}
+        <a href="{% url "profile" %}?id={{ request.user.id }}" class="user-info navbar-user-text">
+          {{ request.user.username }}
         </a>
-        <a href="{% url "settings" %}" class="user-info navbar-user-text">
+        <a href="{% url "settings" %}" class="user-info navbar-settings-text">
           Settings
         </a>
+        <a href="{% url "logout" %}?next={{ next }}&id={{ id }}" class="user-info navbar-login-text">
+          Log out
+        </a>
+        {% else %}
+        <a href="{% url "login" %}?next={{ next }}&id={{ id }}" class="user-info navbar-login-text">
+          Log in
+        </a>
+        {% endif %}
       </div>
     </nav>
   </header>

@@ -1,24 +1,27 @@
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from django.core.files.uploadedfile import SimpleUploadedFile
-from app.models import Question, Answer, Tag, Like, Profile
+from app.models import Question, Answer, Tag, LikeQuestion, LikeAnswer, Profile
 
 test_amount = 100
 
 users_to_create = [
-    User(
-        username="username_{}".format(i),
-        password="0",
-        email="test_email_{}@mail.ru".format(i),
-        first_name="First_{}_name".format(i),
-        last_name="Last_{}_name".format(i),
+    User.objects.create_user(
+    username="username_{}".format(i),
+    password="{}".format(i),
+    email="test_email_{}@mail.ru".format(i),
+    first_name="First_{}_name".format(i),
+    last_name="Last_{}_name".format(i),
     )
     for i in range(test_amount + 1)
 ]
 
-profiles_to_create = [Profile(
-    user=users_to_create[i])
-    for i in range(test_amount + 1)]
+profiles_to_create = [
+    Profile(
+        user=users_to_create[i]
+    )
+    for i in range(test_amount + 1)
+]
 
 questions_to_create = [
     Question(

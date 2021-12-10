@@ -9,17 +9,17 @@
         <div class="col-9">
             <div class="row">
                 <div class="col">
-                    <h2>User_666</h2>
+                    <h2>{{ username  }}</h2>
                 </div>
             </div>
             <form>
                 <div class="mb-3">
                   <label for="emailForm" class="form-label">Email address</label>
-                  <input type="email" readonly class="form-control input-area" value="your_awesome_email@life_is_good.com" id="emailForm">
+                  <input type="email" readonly class="form-control input-area" value={{ email }} id="emailForm">
                 </div>
                 <div class="mb-3">
                     <label for="nicknameForm" class="form-label">Nickname</label>
-                    <input type="text" readonly class="form-control input-area" value="yourWonderfulNickname" id="nicknameForm">
+                    <input type="text" readonly class="form-control input-area" value={{ username }} id="nicknameForm">
                   </div>
                   <div class="mb-3">
                     <div class="row">

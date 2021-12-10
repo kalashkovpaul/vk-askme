@@ -58,8 +58,9 @@ main > .container {
     height: 100px;
 }
 
-.input-area {
+.input-area  {
     width: 350px;
+    margin-bottom: 7px;
 }
 
 .question-button {
@@ -83,16 +84,22 @@ main > .container {
 }
 
 .navbar-user-text {
-    color: white;
+    color: aqua;
+    width: 90px;
+    padding-top: 13px;
+}
+
+.navbar-settings-text {
+    color: blueviolet;
     width: 90px;
     padding-top: 13px;
 }
 
 .navbar-login-text {
-    color: white;
+    color: greenyellow;
     width: 70px;
     padding-top: 13px;
-    padding-left: 16px;
+    padding-left: 1px;
 }
 
 .user-avatar {
