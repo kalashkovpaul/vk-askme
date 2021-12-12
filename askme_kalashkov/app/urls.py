@@ -23,7 +23,7 @@ app_urlpatterns = [
     path('ask/', views.ask, name="ask"),
     path('login/', views.login, name="login"),
     path('signup/', views.register, name="register"),
-    path('edit  /', views.settings, name="settings"),
+    path('edit/', views.settings, name="edit"),
     path('tag/', views.tagged, name="tag"),
     path('tag/hoho/', views.tagged),
     path('profile/', views.profile, name="profile"),

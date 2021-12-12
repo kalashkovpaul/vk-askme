@@ -1,5 +1,6 @@
 {% extends "incl/base.html" %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block title %}
 <title>Settings</title>
@@ -12,8 +13,8 @@
                     <h2>Settings: User_666</h2>
                 </div>
             </div>
-            <form>
-                <div class="mb-3">
+            <form action='/edit/' method='post'>
+                <!-- <div class="mb-3">
                     <label for="loginForm" class="form-label">Login</label>
                     <input type="text" class="form-control input-area" value="YourBrilliantLogin" id="loginForm">
                   </div>
@@ -24,7 +25,10 @@
                 <div class="mb-3">
                     <label for="nicknameForm" class="form-label">Nickname</label>
                     <input type="text" class="form-control input-area" value="yourWonderfulNickname" id="nicknameForm">
-                  </div>
+                  </div> -->
+                  {% csrf_token %}
+                  {% bootstrap_form form %}
+                  {% buttons %}
                   <div class="mb-3">
                     <div class="row">
                         <label for="avatarForm" class="form-label">Avatar</label>
@@ -39,6 +43,7 @@
                   </div>
                 <button type="submit" class="btn btn-primary send-question-button">Save</button>
                 <a type="button" href="{% url "login" %}" class="btn btn-link">Log out</a>
+                {% endbuttons %}
               </form>   
         </div>
 {% endblock content %}

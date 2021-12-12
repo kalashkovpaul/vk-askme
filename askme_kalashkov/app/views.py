@@ -1,10 +1,12 @@
+from typing import Set
+from django.db.models.query_utils import Q
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
 from django.utils import timezone
 from django.contrib import auth
 from django.urls import reverse
 from .models import Profile, Question, Answer, Tag, LikeQuestion, LikeAnswer
-from .forms import LoginForm, SingUpForm
+from .forms import AnswerForm, LoginForm, SettingsForm, SingUpForm, QuestionForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -24,28 +26,93 @@ def index(request):
     }
     return render(request, "index.html", context=context)
 
+
+q_id = 0
 def question(request):
-    question_id=request.GET.get('id')
-    question = Question.objects.get(id=question_id)
-    answers=question.answers.all()
-    content = paginate(answers, request,5)
-    context = {
-        'question': question,
-        'contents':content,
-        'answers': content,
-        'next': 'question',
-        'id': question_id
-    }
-    return render(request, "question.html", context=context)
+    global q_id
+    if request.method == 'GET':
+        question_id=request.GET.get('id')
+        q_id = question_id
+        question = Question.objects.get(id=question_id)
+        answers=question.answers.all()
+        form = AnswerForm()
+        content = paginate(answers, request,5)
+        context = {
+            'question': question,
+            'contents':content,
+            'answers': content,
+            'next': 'question',
+            'id': question_id,
+            'form': form
+        }
+        return render(request, "question.html", context=context)
+    if request.method == 'POST':
+        form = AnswerForm(data=request.POST)
+        print(form.data)
+        print(q_id)
+        question = Question.objects.get(id=q_id)
+        print(question)
+        print(question.title)
+        new_answer = Answer(
+            title=form.data['title'],
+            text=form.data['answer'],
+            author=Profile.objects.get(user=request.user),
+            related_question=question,
+            id=len(Answer.objects.all())
+        )
+        print(new_answer)
+        new_answer.save()
+        question.answers_number += 1
+        question.save()
+        return redirect("{}?id={}".format(reverse("question"), q_id))
+
 
 @login_required(login_url='login')
 def ask(request):
-    # if request.method == 'POST':
-    #     q_form = QuestionForm(data=request.POST)
-    #     if q_form.is_valid():
-    #         q = Question(**q_form.cleaned_data)
-    #         q = Question.save()
-    return render(request, "ask.html", {})
+    if request.method == 'GET':
+        form = QuestionForm()
+    elif request.method == 'POST':
+        form = QuestionForm(data=request.POST)
+        if form.is_valid():
+            new_question = Question(
+                title=form.cleaned_data['title'],
+                question_id=len(Question.objects.all()),
+                text=form.cleaned_data['text'],
+                author=Profile.objects.get(user=request.user),
+                carma=0
+            )
+            print(new_question)
+            new_question.save()
+            print(form.cleaned_data)
+            tag_names = form.cleaned_data['tags'].split()
+            first_tag = Tag.objects.filter(name=tag_names[0])
+            if not first_tag:
+                first_tag = Tag(name=tag_names[0], id=len(Tag.objects.all()))
+            else:
+                first_tag = Tag.objects.get(name=tag_names[0])
+                first_tag.carma += 1
+            first_tag.save()
+            first_tag.questions.add(new_question)
+            if len(tag_names) > 1:
+                second_tag = Tag.objects.filter(name=tag_names[1])
+                if not first_tag:
+                    second_tag = Tag(name=tag_names[1])
+                else:
+                    second_tag = Tag.objects.get(name=tag_names[1])
+                    second_tag.carma += 1
+                second_tag.save()
+                second_tag.questions.add(new_question)
+            if len(tag_names) > 2:
+                third_tag = Tag.objects.filter(name=tag_names[2])
+                if not first_tag:
+                    third_tag = Tag(name=tag_names[2])
+                else:
+                    third_tag = Tag.objects.get(name=tag_names[2])
+                    third_tag.carma += 1
+                third_tag.save()
+                third_tag.questions.add(new_question)
+            return redirect("{}?id={}".format(reverse("question"), new_question.id))
+    return render(request, "ask.html", {'form': form})
 
 
 result_page = 'index'
@@ -115,7 +182,22 @@ def register(request):
 
 @login_required(login_url='login')
 def settings(request):
-    return render(request, "settings.html", {})
+    if request.method == 'GET':
+        user = request.user
+        name = user.username
+        email= user.email
+        profile = Profile.objects.get(user=user)
+        form = SettingsForm(data={'username': name, 'email': email, 'profile': profile})
+    elif request.method == 'POST':
+        form = SettingsForm(data=request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            user = User.objects.get(id=request.user.id)
+            user.username = form.cleaned_data['username']
+            user.email = form.cleaned_data['email']
+            user.save()
+            return redirect(reverse('edit'))
+    return render(request, "settings.html", {'form': form})
 
 def tagged(request):
     id = request.GET.get('id')

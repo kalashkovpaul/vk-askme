@@ -1,5 +1,6 @@
 {% extends "incl/base.html" %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block title %}
 <title>Ask</title>
@@ -8,8 +9,11 @@
 {% block content %}
           <div class="col-9">
             <h2>New Question</h2>
-            <div class="row new-question">
-                <div class="mb-3">
+            <form action='/ask/' method='post' class="row new-question">
+                  {% csrf_token %}
+                  {% bootstrap_form form %}
+                  {% buttons %}
+                <!-- <div class="mb-3">
                     <label for="newQuestionTitle" class="form-label">Title</label>
                     <input type="email" class="form-control" id="newQuestionTitle" placeholder="How can I made a new quesion on AskMe?">
                   </div>
@@ -20,8 +24,9 @@
                   <div class="mb-3">
                     <label for="newQuestionTags" class="form-label">Tags</label>
                     <input type="email" class="form-control" id="newQuestionTags" placeholder="tag_1, tag_2, tag_3">
-                  </div>
-                  <button type="button" class="btn btn-primary btn-lg send-question-button">ASK!</button>
-            </div>
+                  </div> -->
+                  <button type="submit" class="btn btn-primary btn-lg send-question-button">ASK!</button>
+                  {% endbuttons %}
+            </form>
           </div>
 {% endblock content %}

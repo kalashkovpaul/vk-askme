@@ -65,7 +65,7 @@
         <a href="{% url "profile" %}?id={{ request.user.id }}" class="user-info navbar-user-text">
           {{ request.user.username }}
         </a>
-        <a href="{% url "settings" %}" class="user-info navbar-settings-text">
+        <a href="{% url "edit" %}" class="user-info navbar-settings-text">
           Settings
         </a>
         <a href="{% url "logout" %}?next={{ next }}&id={{ id }}" class="user-info navbar-login-text">
