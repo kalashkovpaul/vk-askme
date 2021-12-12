@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block title %}
-<title>Tag: hoho</title>
+<title>Tag: {{ tag.name }} </title>
 {% endblock title %}
 
 {% block content %}
         <div class="col-9">
             <div class="row">
                 <div class="col-3">
-                    <h2>Tag: hoho</h2>
+                    <h2>Tag: {{ tag.name }}</h2>
                 </div>
             </div>
             {% for question in contents %}

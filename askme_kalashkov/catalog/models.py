@@ -1,6 +1,9 @@
 from django.db import models
 from datetime import date
 
+from django.db.models.deletion import CASCADE
+
+    
 class AuthorManager(models.Manager):
     def young_authors(self):
         return self.filter(birth_date__lt=date(2000, 1, 1))

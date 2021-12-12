@@ -22,4 +22,6 @@ from app import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index")
-] + urls.app_urlpatterns
+]   
+
+urlpatterns += urls.app_urlpatterns

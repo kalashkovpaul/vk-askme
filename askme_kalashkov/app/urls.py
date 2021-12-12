@@ -20,14 +20,14 @@ from app import views
 
 app_urlpatterns = [
     path('question/', views.question, name="question"),
-    path('question/2/', views.question),
     path('ask/', views.ask, name="ask"),
     path('login/', views.login, name="login"),
-    path('register/', views.register, name="register"),
-    path('settings/', views.settings, name="settings"),
+    path('signup/', views.register, name="register"),
+    path('edit  /', views.settings, name="settings"),
     path('tag/', views.tagged, name="tag"),
     path('tag/hoho/', views.tagged),
     path('profile/', views.profile, name="profile"),
     path('profile/User_666/', views.profile),
     path('hot/', views.hot, name="hot"),
+    path('logout/', views.logout, name="logout")
 ]

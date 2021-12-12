@@ -15,7 +15,7 @@
                     <h5>Popular questions</h5>
                 </a>
             </div>
-            {% for question in contents %}
+            {% for question in new_questions %}
                 {% include "incl/single_question.html" %}
             {% endfor %}
             {% include "incl/pagination.html" %}
