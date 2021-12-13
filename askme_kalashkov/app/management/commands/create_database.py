@@ -7,9 +7,9 @@ test_amount = 100
 
 users_to_create = [
     User.objects.create_user(
-    username="username_{}".format(i),
+    username="user_{}".format(i),
     password="{}".format(i),
-    email="test_email_{}@mail.ru".format(i),
+    email="email_{}@mail.ru".format(i),
     first_name="First_{}_name".format(i),
     last_name="Last_{}_name".format(i),
     )

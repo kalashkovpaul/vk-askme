@@ -39,11 +39,16 @@ class SingUpForm(forms.Form):
                 self.add_error(None, "This email is already taken")
     # TODO: upload image
     
-class SettingsForm(forms.Form):
+class SettingsForm(forms.ModelForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input-area'}))
     email = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input-area'}))
+    avatar = forms.ImageField()
     profile = Profile()
 
+    class Meta:
+        model = User
+        fields = ['username', 'avatar']
+    
     def clean(self):
         cleaned_data = super().clean()
         profiles = Profile.objects.all()
@@ -53,6 +58,12 @@ class SettingsForm(forms.Form):
                 self.add_error(None, "This username is already taken")
             elif user.email == cleaned_data['email'] and user.username != profile.user.username:
                 self.add_error(None, "This email is already taken")
+    
+    def save(self, *args, **kwargs):
+        user = super().save(*args, **kwargs)
+        user.profile.avatar = self.cleaned_data['avatar']
+        user.profile.save()
+        return user
     # TODO: upload image
 
 class QuestionForm(forms.Form):

@@ -5,10 +5,12 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from django.contrib import auth
 from django.urls import reverse
+
 from .models import Profile, Question, Answer, Tag, LikeQuestion, LikeAnswer
 from .forms import AnswerForm, LoginForm, SettingsForm, SingUpForm, QuestionForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.forms.models import model_to_dict
 
 def paginate(objects_list, request, per_page=10):
     paginator = Paginator(objects_list, per_page)
@@ -45,6 +47,8 @@ def question(request):
             'id': question_id,
             'form': form
         }
+        print("OOOOOO")
+        print(question.answers.all())
         return render(request, "question.html", context=context)
     if request.method == 'POST':
         form = AnswerForm(data=request.POST)
@@ -53,17 +57,17 @@ def question(request):
         question = Question.objects.get(id=q_id)
         print(question)
         print(question.title)
-        new_answer = Answer(
+        question.answers.create(
             title=form.data['title'],
             text=form.data['answer'],
             author=Profile.objects.get(user=request.user),
             related_question=question,
-            id=len(Answer.objects.all())
+            id=len(Answer.objects.all()) + 1
         )
-        print(new_answer)
-        new_answer.save()
         question.answers_number += 1
         question.save()
+        print("OOOOOO")
+        print(question.answers.all())
         return redirect("{}?id={}".format(reverse("question"), q_id))
 
 
@@ -182,22 +186,31 @@ def register(request):
 
 @login_required(login_url='login')
 def settings(request):
+    user = User.objects.get(id=request.user.id)
     if request.method == 'GET':
+        initial_data = model_to_dict(request.user)
+        initial_data['avatar'] = request.user.profile.avatar
         user = request.user
         name = user.username
         email= user.email
         profile = Profile.objects.get(user=user)
-        form = SettingsForm(data={'username': name, 'email': email, 'profile': profile})
+        form = SettingsForm(initial=initial_data,
+            data={
+            'username': name,
+            'email': email,
+            'profile': profile,
+            'avatar': request.user.profile.avatar
+            })
     elif request.method == 'POST':
-        form = SettingsForm(data=request.POST)
+        form = SettingsForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             print(form.cleaned_data)
-            user = User.objects.get(id=request.user.id)
             user.username = form.cleaned_data['username']
             user.email = form.cleaned_data['email']
             user.save()
+            form.save()
             return redirect(reverse('edit'))
-    return render(request, "settings.html", {'form': form})
+    return render(request, "settings.html", {'form': form, 'username': user.get_username()})
 
 def tagged(request):
     id = request.GET.get('id')
@@ -246,6 +259,7 @@ def profile(request):
             'email': user.get_email_field_name(),
             'username': user.get_username(),
             'next': 'profile',
-            'id': profile_id
+            'id': profile_id,
+            'user': user
         }
         return render(request, "profile.html", context=context)

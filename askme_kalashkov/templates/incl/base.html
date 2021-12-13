@@ -58,10 +58,10 @@
         <form action="{% url "ask" %}">
           <button class="btn btn-outline-success" type="submit">ASK!</button>
         </form>
-        <div class="user-info">
-          <img class="user-avatar" src="{% static "img/watergirl.png" %}" alt="">
-        </div>
         {% if request.user.is_authenticated %}
+        <div class="user-info">
+          <img class="user-avatar" src="{{ request.user.profile.avatar.url }}" alt="">
+        </div>
         <a href="{% url "profile" %}?id={{ request.user.id }}" class="user-info navbar-user-text">
           {{ request.user.username }}
         </a>
@@ -165,53 +165,53 @@
           <div class="row">
             <h5>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <a href="{% url "profile" %}" class="link-danger">
-                User_1
+              <a href="{% url "profile" %}?id=2" class="link-danger">
+                user_1
               </a>
               &nbsp;
-              <a href="{% url "profile" %}" class="link-primary">
-                User_2
+              <a href="{% url "profile" %}?id=3" class="link-primary">
+                user_2
               </a>
               &nbsp;
-              <a href="{% url "profile" %}" class="link-success">
-                User_3
+              <a href="{% url "profile" %}?id=4" class="link-success">
+                user_3
               </a>
               &nbsp;
             </h5>
             <h5>
-              <a href="{% url "profile" %}" class="link-dark">
-                You
+              <a href="{% url "profile" %}?id=6" class="link-dark">
+                user_5
               </a>
               &nbsp;
-              <a href="{% url "profile" %}" class="link-info">
-                Me
+              <a href="{% url "profile" %}?id=11" class="link-info">
+                user_10
               </a>
               &nbsp;
-              <a href="{% url "profile" %}" class="link-warning">
-                Our_friends
+              <a href="{% url "profile" %}?id=18" class="link-warning">
+                user_17
               </a>
             </h5>
             <h5>
               &nbsp;
-              <a href="{% url "profile" %}" class="link-success">
-                User_4
+              <a href="{% url "profile" %}?id=21" class="link-success">
+                user_20
               </a>
               &nbsp;
-              <a href="{% url "profile" %}" class="link-primary">
-                User_5
+              <a href="{% url "profile" %}?id=14" class="link-primary">
+                user_13
               </a>
               &nbsp;
-              <a href="{% url "profile" %}" class="link-danger">
-                User_6
+              <a href="{% url "profile" %}?id=10" class="link-danger">
+                user_9
               </a>
             </h5>
             <h5>
-              <a href="{% url "profile" %}" class="link-warning">
-                Your friend
+              <a href="{% url "profile" %}?id=82" class="link-warning">
+                user_81
               </a>
               &nbsp;
-              <a href="{% url "profile" %}" class="link-dark">
-                My friend
+              <a href="{% url "profile" %}?id=76" class="link-dark">
+                user_75
               </a>
             </h5>
           </div>

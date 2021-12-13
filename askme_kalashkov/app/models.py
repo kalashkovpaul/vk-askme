@@ -14,7 +14,7 @@ class QuestionManager(models.Manager):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE)
-    avatar = models.ImageField()
+    avatar = models.ImageField(upload_to='avatars/', default='avatar.jpg')
 
 
 class Question(models.Model):
@@ -61,3 +61,5 @@ class LikeQuestion(models.Model):
 
     class Meta:
         unique_together = ['user', 'related_question']
+
+

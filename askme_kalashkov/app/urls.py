@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from app import views
+from askme.settings import DEBUG
 
 app_urlpatterns = [
     path('question/', views.question, name="question"),
@@ -31,3 +34,6 @@ app_urlpatterns = [
     path('hot/', views.hot, name="hot"),
     path('logout/', views.logout, name="logout")
 ]
+
+if DEBUG:
+    app_urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

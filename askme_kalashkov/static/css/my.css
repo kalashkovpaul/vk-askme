@@ -42,6 +42,13 @@ main > .container {
     width: 1030px;
 }
 
+.save-button {
+    color:black;
+    background-color:beige;
+    border-color:beige;
+    margin: 10px;
+}
+
 .question-big-avatar {
     width: 200px;
     height: 200px;
