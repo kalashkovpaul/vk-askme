@@ -1,5 +1,6 @@
 from typing import Set
 from django.db.models.query_utils import Q
+from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
 from django.utils import timezone
@@ -9,6 +10,7 @@ from django.urls import reverse
 from .models import Profile, Question, Answer, Tag, LikeQuestion, LikeAnswer
 from .forms import AnswerForm, LoginForm, SettingsForm, SingUpForm, QuestionForm
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
 
@@ -263,3 +265,12 @@ def profile(request):
             'user': user
         }
         return render(request, "profile.html", context=context)
+
+@login_required(login_url='login')
+@require_POST
+def vote(request):
+    question_id = request.POST['id']
+    question = Question.objects.get(question_id=question_id)
+    question.carma += 1
+    question.save()
+    return JsonResponse({})

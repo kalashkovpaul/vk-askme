@@ -7,15 +7,17 @@
         </div>
         <div class="row">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                <input type="radio" data-id="{{ question.question_id }}" class="vote-up btn-check" name="btnradio" id="btnradio1" autocomplete="off">
                 <label class="btn btn-outline-primary question-button" for="btnradio1">Like</label>
               
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <input type="radio" class="vote-down btn-check" name="btnradio" id="btnradio2" autocomplete="off">
                 <label class="btn btn-outline-primary question-button" for="btnradio2">Dislike</label>
-              
+              <h7>
+                {{ question.question_id }}
+              </h7>
               </div>
         </div>
-        <div class="row" style="padding-left: 7px;">
+        <div class="row carma-{{ question.question_id }}" style="padding-left: 7px;">
             <h7>
                 Total: {{ question.carma }}
             </h7>
