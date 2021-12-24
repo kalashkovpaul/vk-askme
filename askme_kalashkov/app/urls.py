@@ -33,7 +33,8 @@ app_urlpatterns = [
     path('profile/User_666/', views.profile),
     path('hot/', views.hot, name="hot"),
     path('logout/', views.logout, name="logout"),
-    path('vote/', views.vote, name="vote")
+    path('question_vote/', views.question_vote, name="question_vote"),
+    path('answer_vote/', views.answer_vote, name="answer_vote")
 ]
 
 if DEBUG:

@@ -57,7 +57,6 @@ class LikeQuestion(models.Model):
     user = models.ForeignKey(Profile, on_delete=CASCADE, related_name="likes_question")
     value = models.IntegerField(default=0)
     related_question = models.ForeignKey(Question, on_delete=CASCADE, related_name="likes")
-    unique_together = models.BooleanField(default=0)
 
     class Meta:
         unique_together = ['user', 'related_question']

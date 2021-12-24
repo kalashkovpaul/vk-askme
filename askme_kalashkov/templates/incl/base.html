@@ -245,17 +245,30 @@
     var csrftoken = getCookie('csrftoken');
   </script>
   <script>
-    $(".vote-up").on("click", function(ev){
-      console.log($(".vote-up").data('id'))
+    $(".question-vote-up, .question-vote-down").on("click", function(ev){
       var $this = $(this) 
-      alert($this.data('id'))
       $.ajax({
         method: "POST",
-        url: "vote/",
-        data: {'id': $this.data('id')},
+        url: "question_vote/",
+        data: {'id': $this.data('id'), 'up': $this.data('up')},
+        dataType: "json",
         headers: {'X-CSRFToken': csrftoken}
-      }).done(function(response) {
-        location.reload();
+      }).done(function(data) {
+        $('#question-rating-'+$this.data('id')).text('Total: ' + data.carma);
+      });
+      })
+  </script>
+  <script>
+    $(".answer-vote-up, .answer-vote-down").on("click", function(ev){
+      var $this = $(this) 
+      $.ajax({
+        method: "POST",
+        url: "/answer_vote/",
+        data: {'id': $this.data('id'), 'up': $this.data('up')},
+        dataType: "json",
+        headers: {'X-CSRFToken': csrftoken}
+      }).done(function(data) {
+        $('#answer-rating-'+$this.data('id')).text('Total: ' + data.carma);
       });
       })
   </script>

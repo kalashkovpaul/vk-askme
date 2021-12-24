@@ -268,9 +268,43 @@ def profile(request):
 
 @login_required(login_url='login')
 @require_POST
-def vote(request):
+def question_vote(request):
     question_id = request.POST['id']
     question = Question.objects.get(question_id=question_id)
-    question.carma += 1
+    like_up = (request.POST['up'] == "yes")
+    like_value = 0
+    if like_up:
+        like_value = 1
+    else:
+        like_value = -1
+    new_like = LikeQuestion(
+        user=Profile.objects.get(user=request.user),
+        value=like_value,
+        related_question=question,
+    )
+    question.carma += like_value
+    new_like.save()
     question.save()
-    return JsonResponse({})
+    return JsonResponse({'carma': question.carma})
+
+@login_required(login_url='login')
+@require_POST
+def answer_vote(request):
+    answer_id = request.POST['id']
+    answer = Answer.objects.get(id=answer_id)
+    like_up = (request.POST['up'] == "yes")
+    like_value = 0
+    if like_up:
+        like_value = 1
+    else:
+        like_value = -1
+    new_like = LikeAnswer.objects.get(related_answer=answer, user=Profile.objects.get(user=request.user))
+    new_like = LikeAnswer(
+        user=Profile.objects.get(user=request.user),
+        value=like_value,
+        related_answer=answer,
+    )
+    answer.carma += like_value
+    new_like.save()
+    answer.save()
+    return JsonResponse({'carma': answer.carma})
