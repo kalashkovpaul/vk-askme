@@ -272,17 +272,27 @@ def question_vote(request):
     question_id = request.POST['id']
     question = Question.objects.get(question_id=question_id)
     like_up = (request.POST['up'] == "yes")
+    print(question)
     like_value = 0
     if like_up:
         like_value = 1
     else:
         like_value = -1
-    new_like = LikeQuestion(
-        user=Profile.objects.get(user=request.user),
-        value=like_value,
-        related_question=question,
-    )
-    question.carma += like_value
+    try:
+        print(question)
+        new_like = LikeQuestion.objects.get(related_question=question, user=Profile.objects.get(user=request.user))
+        print(question)
+        if new_like.value * like_value < 0:
+            question.carma += 2 * like_value
+            new_like.value = like_value
+        print(question)
+    except LikeQuestion.DoesNotExist:
+        new_like = LikeQuestion(
+            user=Profile.objects.get(user=request.user),
+            value=like_value,
+            related_question=question,
+        )
+        question.carma += like_value
     new_like.save()
     question.save()
     return JsonResponse({'carma': question.carma})
@@ -298,13 +308,40 @@ def answer_vote(request):
         like_value = 1
     else:
         like_value = -1
-    new_like = LikeAnswer.objects.get(related_answer=answer, user=Profile.objects.get(user=request.user))
-    new_like = LikeAnswer(
-        user=Profile.objects.get(user=request.user),
-        value=like_value,
-        related_answer=answer,
-    )
-    answer.carma += like_value
+    try:
+        new_like = LikeAnswer.objects.get(related_answer=answer, user=Profile.objects.get(user=request.user))
+        if new_like.value * like_value < 0:
+            answer.carma += 2 * like_value
+            new_like.value = like_value
+    except LikeAnswer.DoesNotExist:
+        new_like = LikeAnswer(
+            user=Profile.objects.get(user=request.user),
+            value=like_value,
+            related_answer=answer,
+        )
+        answer.carma += like_value
     new_like.save()
     answer.save()
     return JsonResponse({'carma': answer.carma})
+
+@login_required(login_url='login')
+@require_POST
+def answer_correct(request):
+    answer_id = request.POST['id']
+    try:
+        answer = Answer.objects.get(id=answer_id)
+        if answer.related_question.author  == Profile.objects.get(user=request.user):
+            answer.is_correct = not answer.is_correct
+            answer.related_question.is_closed = not answer.related_question.is_closed
+            if not answer.related_question.is_closed:
+                answer.related_question.title = answer.related_question.title[:len(answer.related_question.title) - len(" [ Closed ]")]
+            else:
+                answer.related_question.title += " [ Closed ]"
+
+    except Answer.DoesNotExist:
+        print('C запросом что-то не так...')
+    answer.save()
+    # answer.related_question.title = "Question #99"
+    answer.related_question.save()
+    print(answer.related_question.title)
+    return JsonResponse({'question_id': answer.related_question.question_id, 'title': answer.related_question.title})

@@ -272,6 +272,22 @@
       });
       })
   </script>
+  <script>
+    $(".answer-correct").click(function(ev){
+      var $this = $(this)
+      console.log('Tralala')
+      $.ajax({
+        method: "POST",
+        url: "/answer_correct/",
+        data: {'id': $this.data('id')},
+        dataType: "json",
+        headers: {'X-CSRFToken': csrftoken}
+      }).done(function(data) {
+        $('#question-title-'+data.question_id).text(data.title);
+        console.log('Done');
+      });
+      })
+  </script>
 
 </body>
 

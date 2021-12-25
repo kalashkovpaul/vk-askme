@@ -21,19 +21,26 @@
         </div>
         <div class="row" style="padding-left: 15px;">
           <div class="form-check">
-            {% if answer.is_correct == 1 %}
-              <input class="form-check-input" type="checkbox" value="" id="checkAnswer" checked>
+            {% if answer.is_correct == 1 and request.user.username != answer.related_question.author.user.username %}
+              <input data-id="{{ answer.id }}" class="answer-correct form-check-input" type="checkbox" value="" id="checkAnswer" disabled checked>
               <label class="form-check-label" for="checkAnswer">
                 Correct!
               </label>
               {% else %} 
-              {% if request.user.username == answer.related_question.author.user.username %}
-                <input class="form-check-input" type="checkbox" value="" id="checkAnswer">
+              {% if answer.is_correct == 1 and request.user.username == answer.related_question.author.user.username %}
+                <input data-id="{{ answer.id }}" class="answer-correct form-check-input" type="checkbox" value="" id="checkAnswer" checked>
                 <label class="form-check-label" for="checkAnswer">
                   Correct!
                 </label>
+                {% else %} 
+                {% if answer.is_correct == 0 and request.user.username == answer.related_question.author.user.username %}
+                  <input data-id="{{ answer.id }}" class="answer-correct form-check-input" type="checkbox" value="" id="checkAnswer" checked>
+                  <label class="form-check-label" for="checkAnswer">
+                    Correct!
+                  </label>
               {% endif %}  
             {% endif %}
+            {% endif %}  
           </div>
         </div>
     </div>
