@@ -39,6 +39,7 @@ main > .container {
     background-color:beige;
     border-color:beige;
     margin: 10px;
+    width: 1030px;
 }
 
 .question-big-avatar {

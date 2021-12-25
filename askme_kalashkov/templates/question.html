@@ -1,5 +1,6 @@
 {% extends "incl/base.html" %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block title %}
 <title>Question 2</title>
@@ -62,10 +63,13 @@
                 {% include "incl/single_answer.html" %}
             {% endfor %}
         <hr/>
-        <div>
-          <textarea class="form-control" id="newQuestionText" rows="8" placeholder="Enter your answer here..."></textarea>
-        </div>
-        <button type="button" class="btn btn-primary btn-lg send-question-button">Answer!</button>
-            {% include "incl/pagination.html" %}
-        </div>
+        <form action='/question/' method='post' class="row new-question">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% buttons %}
+          <button type="submit" class="btn btn-primary btn-lg send-question-button">Answer!</button>
+          {% endbuttons %}
+        </form>
+        {% include "incl/pagination.html" %}
+    </div>
 {% endblock content %}
