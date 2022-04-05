@@ -12,7 +12,7 @@
             <div class="row question-answer">
               <div class="col-2">
                 <div class="row">
-                  <img class="question-big-avatar" src="{% static "img/fireboy.png" %}" alt="">
+                  <img class="question-big-avatar" src="{{ question.author.avatar.url }}" alt="">
                 </div>
                 <div class="row">
                   <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -31,7 +31,7 @@
               </div>
               <div class="col-8">
                 <div class="row">
-                        <h5>{{ question.title }}</h5>
+                        <h5 id="question-title-{{ question.question_id }}">{{ question.title }}</h5>
                     </div>
                     <div class="row">
                         <h7>

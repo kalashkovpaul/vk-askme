@@ -9,7 +9,7 @@
         <div class="col-9">
             <div class="row">
                 <div class="col">
-                    <h2>{{ username  }}</h2>
+                    <h2>{{ username }}</h2>
                 </div>
             </div>
             <form>
@@ -24,7 +24,7 @@
                   <div class="mb-3">
                     <div class="row">
                         <label for="avatarForm" class="form-label">Avatar</label>
-                        <image src="{% static "img/watergirl.png" %}" class="question-avatar" id="avatarForm">
+                        <image src="{{ user.profile.avatar.url }}" class="question-avatar" id="avatarForm">
                     </div>
                   </div>
               </form>   

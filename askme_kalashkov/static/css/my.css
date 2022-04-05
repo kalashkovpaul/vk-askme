@@ -34,12 +34,23 @@ main > .container {
     border-radius: 5px;
 }
 
+.answer-author-name {
+    margin: 10px;
+}
+
 .send-question-button {
     color:black;
     background-color:beige;
     border-color:beige;
     margin: 10px;
     width: 1030px;
+}
+
+.save-button {
+    color:black;
+    background-color:beige;
+    border-color:beige;
+    margin: 10px;
 }
 
 .question-big-avatar {
