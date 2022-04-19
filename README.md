@@ -14,3 +14,10 @@ source venv/bin/activate
 python3 manage.py runserver
 ```
 Then going to localhost:3000 and that's it!
+
+### Preview
+
+![mainPage](/preview/mainPage.png)
+![loginPage](/preview/loginPage.png)
+![settingsPage](/preview/settingsPage.png)
+![questionPage](/preview/questionPage.png)
