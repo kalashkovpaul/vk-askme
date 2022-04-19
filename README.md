@@ -1,19 +1,16 @@
-# Web-разработка
-## Здесь будут располагаться домашние задания по Web-разработке, Технопарк, 1 семестр.
+# Web-development
+## This is my AskMe project from the 1st semester of VK Education, 2021, Web-development track
+Realised with Python3, Django, Bootstrap4
 
-## ДЗ1
-
-Попытка 1: показано на семинаре №2, оценено 12 баллов из 16
-
-Исправления, которые надо сделать:
-
-- добавить counter лайков для вопросов и ответов (чтобы ещё счётчик, не только кнопки)
-- поле для галочки correct поцентрее
-- в index.html тэги сделать как ссылки
-- добавить "ошибки" в формах - как бы выглядело, если ввели бы неверные данные
-
-Исправлено, ожидает оценки вместе с ДЗ2
-
-## ДЗ2
-
-Сделано, ожидает оценки...
+### Getting started
+Firstly, install Django and Bootstrap
+```bash
+pip install django bootstrap4 django-bootstrap4
+```
+Start:
+```bash
+cd askme_kalashkov/
+source venv/bin/activate
+python3 manage.py runserver
+```
+Then going to localhost:3000 and that's it!
